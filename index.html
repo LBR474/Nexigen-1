@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexigen — R3F Experiment</title>
+
+    <style>
+        @font-face {
+            font-family: "Barlow Condensed";
+            src: url("./fonts/Barlow_Condensed/BarlowCondensed-Thin.ttf") format("truetype");
+            font-weight: 100;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Barlow Condensed";
+            src: url("./fonts/Barlow_Condensed/BarlowCondensed-Medium.ttf") format("truetype");
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Barlow Condensed", Arial, sans-serif;
+            background: #111;
+            color: #fff;
+        }
+
+
+
+        /* HEADER */
+
+        /* HEADER */
+
+        .site-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 60px;
+            z-index: 10;
+            background: transparent;
+        }
+
+        .site-header__wrapper {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        .site-header__logo-panel {
+            background: transparent;
+            padding: 20px 30px;
+        }
+
+        
+
+        .site-header-logo__image {
+            display: block;
+            width: 200px;
+            height: auto;
+            max-width: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        /* MENU PANEL */
+
+        .site-header__menu-panel {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            padding: 25px 0 25px 35px;
+            background-color: transparent;
+        }
+
+        .site-header-navigation {
+            transform: translateX(-40px);
+        }
+
+        /* HAMBURGER */
+
+        .site-header__menu-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 4px;
+            width: 24px;
+            cursor: pointer;
+        }
+
+        .site-header__menu-icon span {
+            display: block;
+            height: 1.5px;
+            background-color: #fff;
+        }
+
+        .site-header__menu-icon span:nth-child(1) {
+            width: 22px;
+        }
+
+        .site-header__menu-icon span:nth-child(2) {
+            width: 12px;
+        }
+
+        .site-header__menu-icon span:nth-child(3) {
+            width: 17px;
+        }
+
+
+        .site-header-navigation__list {
+            display: flex;
+            align-items: center;
+            gap: 52px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .site-header-navigation__anchor {
+            font-family: "Barlow Condensed", Arial, sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: #fff;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .site-header-navigation__anchor:hover {
+            opacity: 0.6;
+        }
+
+        /* HERO BANNER */
+        /* HERO BANNER */
+
+        main {
+            position: relative;
+        }
+
+        .homepage-banner {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            height: 100svh;
+            min-height: 600px;
+            overflow: hidden;
+            background: #17111f;
+
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1.5s ease;
+        }
+
+        /* R3F HERO */
+
+        .homepage-banner--r3f {
+            position: absolute;
+            inset: 0;
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 2;
+            transition: opacity 1.5s ease;
+        }
+
+        .homepage-banner--r3f .homepage-banner__heading {
+            transition: opacity 1s ease;
+        }
+
+        .homepage-banner--r3f.intro-finished .homepage-banner__heading {
+            opacity: 0;
+        }
+
+        .homepage-banner--r3f__canvas {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .homepage-banner--r3f .homepage-banner__wrapper {
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .homepage-banner--r3f .circle-button {
+            pointer-events: auto;
+        }
+
+        .homepage-banner__video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        /* DARK OVERLAY */
+
+        .homepage-banner::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom,
+                    rgba(0, 0, 0, 0.15),
+                    rgba(0, 0, 0, 0.15) 50%,
+                    rgba(0, 0, 0, 0.55));
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* CONTENT */
+
+        .homepage-banner__wrapper {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            padding: 160px 60px 55px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .homepage-banner__heading {
+            font-family: "Barlow Condensed", Arial, sans-serif;
+            font-size: 9vw;
+            font-weight: 200;
+            color: #fff;
+            width: 60%;
+            letter-spacing: -.2vw;
+            line-height: 0.95;
+            margin: 0;
+            padding: 0;
+            transform: translateY(clamp(0px, 26.67svh, 240px));
+        }
+
+        /* BOTTOM CONTENT */
+
+        .homepage-banner__bottom {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        .homepage-banner__description {
+            color: #fff;
+            font-size: 17px;
+            font-weight: 500;
+            line-height: 1.6;
+            text-align: right;
+        }
+
+        /* CIRCLE BUTTON */
+
+        .circle-button {
+            width: 65px;
+            height: 65px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .circle-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .circle-button__icon {
+            width: 12px;
+            height: 12px;
+            border-right: 2px solid white;
+            border-bottom: 2px solid white;
+            transform: rotate(45deg);
+            margin-top: -6px;
+        }
+
+
+
+        /* MOBILE */
+
+
+        @media (max-width: 700px) {
+            /* MOBILE HEADER */
+
+            .site-header__logo-panel {
+                display: none;
+            }
+
+            .site-header-navigation {
+                display: none;
+            }
+
+            .site-header__menu-panel {
+                margin-left: auto;
+                padding: 0;
+            }
+
+            .site-header {
+                height: 75px;
+                padding: 15px 24px;
+            }
+
+            .site-header__wrapper {
+                padding: 0;
+            }
+
+            .site-header-logo__image {
+                width: 125px;
+            }
+
+            .site-header-navigation__list {
+                gap: 18px;
+            }
+
+            .site-header-navigation__anchor {
+                font-size: 12px;
+            }
+
+            .homepage-banner__wrapper {
+                padding: 140px 25px 35px;
+            }
+
+            .homepage-banner__heading {
+                letter-spacing: -2px;
+            }
+
+            .homepage-banner__bottom {
+                align-items: flex-start;
+                flex-direction: column-reverse;
+                gap: 35px;
+            }
+
+            .homepage-banner__description {
+                text-align: left;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .site-header-navigation__list {
+                gap: 12px;
+            }
+
+            .site-header-navigation__item:nth-child(3),
+            .site-header-navigation__item:nth-child(4) {
+                display: none;
+            }
+
+            .homepage-banner__heading {
+                letter-spacing: -2px;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="site-header">
+
+        <div class="site-header__wrapper">
+
+            <!-- LEFT: LOGO PANEL -->
+
+            <div class="site-header__logo-panel">
+
+                <a class="site-header__logo" href="https://nexigen.digital">
+                    <img class="site-header-logo__image" src="images/nexi-1.svg" alt="Nexigen Digital Logo" />
+                </a>
+
+            </div>
+
+            <!-- RIGHT: NAVIGATION PANEL -->
+
+            <div class="site-header__menu-panel">
+
+                <nav class="site-header-navigation">
+                    <ul class="site-header-navigation__list">
+
+                        <li><a class="site-header-navigation__anchor" href="#">Brands</a></li>
+                        <li><a class="site-header-navigation__anchor" href="#">Company</a></li>
+                        <li><a class="site-header-navigation__anchor" href="#">Our People</a></li>
+                        <li><a class="site-header-navigation__anchor" href="#">Careers</a></li>
+
+                    </ul>
+                </nav>
+
+                <div class="site-header__menu-icon" aria-label="Open menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <main>
+
+        <div class="homepage-banner fullscreen-box">
+
+            <video autoplay loop muted playsinline preload="auto" class="homepage-banner__video" id="myVideo">
+                <source src="https://nexigen.digital/wp-content/uploads/colour-explosion-green.mp4" type="video/mp4">
+
+                <source src="https://nexigen.digital/wp-content/uploads/colour-explosion-green2.webm" type="video/webm">
+            </video>
+
+            <div class="homepage-banner__wrapper">
+
+                <h1 class="homepage-banner__heading">
+                    Innovation<br>Down Under
+                </h1>
+
+                <div class="homepage-banner__bottom">
+
+                    <button class="circle-button homepage-banner__down-button" aria-label="Scroll down" onclick="window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
+              })">
+                        <i class="circle-button__icon"></i>
+                    </button>
+
+                    <div class="homepage-banner__description">
+                        Nexigen Digital are a technology-led organisation with<br>
+                        a simple purpose: To grow Australian businesses by giving them<br>
+                        the tools to reach and serve their customers online.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- R3F HERO -->
+
+        <div class="homepage-banner homepage-banner--r3f">
+            <div class="homepage-banner__wrapper">
+
+                <h1 class="homepage-banner__heading">
+                    Get things<br>moving
+                </h1>
+
+                <div id="r3f-root" class="homepage-banner--r3f__canvas"></div>
+
+                <div class="homepage-banner__bottom">
+
+                    <button class="circle-button homepage-banner__down-button">
+                        <i class="circle-button__icon"></i>
+                    </button>
+
+                    <div class="homepage-banner__description">
+                        Nexigen Digital are a technology-led organisation with<br>
+                        a simple purpose: To grow Australian businesses by giving them<br>
+                        the tools to reach and serve their customers online.
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- R3F canvas will go here -->
+
+        </div>
+
+
+    </main>
+
+    <script>
+
+        const r3fHero = document.querySelector('.homepage-banner--r3f');
+
+        const videoHero = document.querySelector(
+            '.homepage-banner:not(.homepage-banner--r3f)'
+        );
+
+        // 3 seconds: fade out the opening heading
+        setTimeout(() => {
+
+            r3fHero.classList.add('intro-finished');
+
+        }, 3000);
+
+
+        // 4 seconds: start the GLB animation
+        setTimeout(() => {
+
+            window.dispatchEvent(
+                new Event('nexigen:start-model')
+            );
+
+        }, 4000);
+
+
+        // 9 seconds: reveal the standard Nexigen homepage
+        setTimeout(() => {
+            r3fHero.style.opacity = '0';
+            videoHero.style.opacity = '1';
+
+            document.querySelector('.site-header-logo__image').style.opacity = '1';
+
+            setTimeout(() => {
+                r3fHero.style.pointerEvents = 'none';
+                videoHero.style.pointerEvents = 'auto';
+            }, 1500);
+        }, 13000);
+
+    </script>
+
+    <script type="module" src="js/index-6qDbY-Rq.js"></script>
+</body>
+
+</html>
